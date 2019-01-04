@@ -1,10 +1,26 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-const IndexPage = () => {
+const IndexPage = (props) => {
+    console.log(props)
     return (
         <div className='container'>
-            <h1>IndexPage</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum mattis ligula, ut porta magna interdum vitae. Quisque faucibus lacus sit amet metus fringilla, non posuere mauris vestibulum. Nullam ac massa eu lacus tempor vulputate. Donec congue a ligula quis tincidunt. Nulla imperdiet mi quis nunc convallis, eu lacinia est semper. Nam eget metus sed sem feugiat gravida. In hac habitasse platea dictumst. Sed lobortis egestas accumsan. Maecenas semper ex non massa vehicula, sit amet blandit eros tempus. Cras cursus dui nec arcu ornare dictum. Duis ut urna mauris. Nullam rutrum vitae velit non aliquam. Cras nec urna molestie, maximus dui id, ornare ipsum. Praesent luctus sem egestas viverra elementum.</p>
+            {props.movies.map(movie => {
+                return (
+                    <div className='container'>
+                    <div className="card-columns">
+                        <div className="card" key={`movie ${movie.id}`}>
+                            <img className="card-img-top img-fluid" src={movie.Poster_URL} style={{width:100, height:160}} alt="Card cap"/>
+                            <div className="card-body">
+                                <h5 className="card-title">{movie.Title}</h5>
+                                <h5 className="card-title">({movie.Year})</h5>
+                                <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                )
+            })}
         </div>
     )
 }
