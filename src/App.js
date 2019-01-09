@@ -3,6 +3,10 @@ import { BrowserRouter, Route } from "react-router-dom"
 import Navbar from './Components/Navbar'
 import HomePage from './Components/HomePage'
 import IndexPage from './Components/IndexPage'
+import Footer from './Components/Footer'
+import AddMovie from './Components/AddMovie'
+import ShowMovie from './Components/ShowMovie'
+
 
 class App extends Component {
   constructor(){
@@ -24,8 +28,15 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <Navbar />
-          <Route path='/' exact component={ HomePage } />
-          <Route path='/movies' render = {props => <IndexPage {...props} movies = {this.state.movies} />} />
+          <div className="container-fluid">
+            <Route path='/' exact component={ HomePage } />
+            <div className="row">
+              <ShowMovie />
+              <div>
+                <Route path='/movies' render = {props => <IndexPage {...props} movies = {this.state.movies} />} />
+              </div>
+            </div>
+          </div>
         </div>
       </BrowserRouter>
     );
