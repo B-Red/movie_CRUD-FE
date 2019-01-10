@@ -48,7 +48,9 @@ class App extends Component {
       this.saveEdit()
       this.setState ({ selectedMovie : [] })
     })
-    
+  }
+  clearSelectedMovie = () => {
+    this.setState({ selectedMovie : [] })
   }
 
   render() {

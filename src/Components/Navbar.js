@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Navbar = () => {
+const Navbar = (props) => {
     return (
         <nav className="navbar sticky-top navbar-expand-lg navbar-light bg-light">
             <Link to="/" className="navbar-brand">Red's Ratings</Link>
