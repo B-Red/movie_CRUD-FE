@@ -6,6 +6,8 @@ import IndexPage from './Components/IndexPage'
 import Footer from './Components/Footer'
 import AddMovie from './Components/AddMovie'
 import ShowMovie from './Components/ShowMovie'
+import EditMovie from './Components/EditMovie'
+
 
 
 class App extends Component {
@@ -13,7 +15,8 @@ class App extends Component {
     super()
       this.state = {
         movies: [],
-        selectedMovie:[]
+        selectedMovie:[],
+        editMovie:false
       };
     }
   
@@ -32,6 +35,13 @@ class App extends Component {
       
   }
 
+  showEdit = () => {
+    this.setState({editMovie : true })
+  }
+  saveEdit = () => {
+    this.setState({editMovie : false })
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -39,13 +49,17 @@ class App extends Component {
           <Navbar />
           <div className="container-fluid">
             <Route path='/' exact component={ HomePage } />
-            <div className="row">
-              <Route path='/' render = {props => <ShowMovie {...props} selectedMovie = {this.state.selectedMovie} />} />
-              <div>
+            <div className="container row">
+              <div className="col-4">
                 <Route path='/movies' render = {props => <IndexPage {...props} movies = {this.state.movies} selectMovie ={this.selectMovie} />} />
+              </div>
+              <div className="col-8">
+                <Route path='/' render = {props => <ShowMovie {...props} selectedMovie = {this.state.selectedMovie} />} />
+                <EditMovie editMovie={this.state.editMovie ? "modal display-block" : "modal display-none"} showEdit={this.showEdit} saveEdit={this.saveEdit} selectedMovie={this.state.selectedMovie} />  
               </div>
             </div>
           </div>
+          <Footer />
         </div>
       </BrowserRouter>
     );

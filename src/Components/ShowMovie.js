@@ -15,10 +15,10 @@ const ShowMovie = (props) => {
                     <a href="#" className="btn btn-primary">Edit Movie</a>
                 </div>
             </div>
+                    )
+                }
             )
-            }
-            )
-            }
+        }
         </div>
     )
 }
