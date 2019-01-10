@@ -12,7 +12,8 @@ class App extends Component {
   constructor(){
     super()
       this.state = {
-        movies: []
+        movies: [],
+        selectedMovie:[]
       };
     }
   
@@ -23,6 +24,14 @@ class App extends Component {
       .then(data => this.setState({ movies : data }));
   }
 
+  selectMovie = (event) => {
+    console.log(event.target.id)
+    fetch(`https://reds-movie-backend.herokuapp.com/${event.target.id}`)
+      .then(response => response.json())
+      .then(data => this.setState({ selectedMovie : data }))
+      
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -31,9 +40,9 @@ class App extends Component {
           <div className="container-fluid">
             <Route path='/' exact component={ HomePage } />
             <div className="row">
-              <ShowMovie />
+              <Route path='/' render = {props => <ShowMovie {...props} selectedMovie = {this.state.selectedMovie} />} />
               <div>
-                <Route path='/movies' render = {props => <IndexPage {...props} movies = {this.state.movies} />} />
+                <Route path='/movies' render = {props => <IndexPage {...props} movies = {this.state.movies} selectMovie ={this.selectMovie} />} />
               </div>
             </div>
           </div>
