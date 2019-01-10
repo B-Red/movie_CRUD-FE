@@ -7,7 +7,7 @@ const EditMovie = (props) => {
                 return(
                 <div className="modal-main">
                     <p>{movie.Title}</p>
-                    <button onClick={props.editMovie}>close</button>
+                    <button>close</button>
                 </div>
             )})}
         </div>

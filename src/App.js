@@ -54,7 +54,7 @@ class App extends Component {
                 <Route path='/movies' render = {props => <IndexPage {...props} movies = {this.state.movies} selectMovie ={this.selectMovie} />} />
               </div>
               <div className="col-8">
-                <Route path='/' render = {props => <ShowMovie {...props} selectedMovie = {this.state.selectedMovie} />} />
+                <Route path='/' render = {props => <ShowMovie {...props} selectedMovie = {this.state.selectedMovie} showEdit={this.showEdit} />} />
                 <EditMovie editMovie={this.state.editMovie ? "modal display-block" : "modal display-none"} showEdit={this.showEdit} saveEdit={this.saveEdit} selectedMovie={this.state.selectedMovie} />  
               </div>
             </div>
