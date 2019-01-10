@@ -19,20 +19,20 @@ class App extends Component {
         editMovie:false
       };
     }
-  
-
-  componentDidMount() {
+  currentState = () => {
     fetch('https://reds-movie-backend.herokuapp.com/')
       .then(response => response.json())
       .then(data => this.setState({ movies : data }));
   }
 
+  componentDidMount() {
+    this.currentState()
+  }
+
   selectMovie = (event) => {
-    console.log(event.target.id)
     fetch(`https://reds-movie-backend.herokuapp.com/${event.target.id}`)
       .then(response => response.json())
       .then(data => this.setState({ selectedMovie : data }))
-      
   }
 
   showEdit = () => {
@@ -40,6 +40,15 @@ class App extends Component {
   }
   saveEdit = () => {
     this.setState({editMovie : false })
+  }
+  deleteMovie = (event) => {
+    fetch(`https://reds-movie-backend.herokuapp.com/${event.target.id}`, { method : 'DELETE' })
+    .then(response => {
+      this.currentState()
+      this.saveEdit()
+      this.setState ({ selectedMovie : [] })
+    })
+    
   }
 
   render() {
@@ -54,8 +63,12 @@ class App extends Component {
                 <Route path='/movies' render = {props => <IndexPage {...props} movies = {this.state.movies} selectMovie ={this.selectMovie} />} />
               </div>
               <div className="col-8">
-                <Route path='/' render = {props => <ShowMovie {...props} selectedMovie = {this.state.selectedMovie} showEdit={this.showEdit} />} />
-                <EditMovie editMovie={this.state.editMovie ? "modal display-block" : "modal display-none"} showEdit={this.showEdit} saveEdit={this.saveEdit} selectedMovie={this.state.selectedMovie} />  
+                <Route path='/' render = {props => <ShowMovie {...props} selectedMovie = {this.state.selectedMovie} 
+                showEdit={this.showEdit} />} />
+                <EditMovie 
+                editMovie={this.state.editMovie ? "modal display-block" : "modal display-none"} 
+                showEdit={this.showEdit} saveEdit={this.saveEdit} 
+                selectedMovie={this.state.selectedMovie} deleteMovie={this.deleteMovie}/>  
               </div>
             </div>
           </div>
