@@ -5,17 +5,28 @@ const EditMovie = (props) => {
         <div className={props.editMovie}>
             {props.selectedMovie.map(movie => {
                 return(
-                <div className="modal-main">
-                    <p>{movie.Title}</p>
+                <div className="modal-main container">
+                    <p className="display-4 font-weight-bolder">{movie.Title}</p>
                     <form>
                         <div class="form-group">
-                            <label for="movieTitle">Email address</label>
-                            <input type="email" className="form-control" id="movieTitle" placeholder={movie.title} />
-                            <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                            <label for="movieTitle">Movie Title: {movie.Title}</label>
+                            <input class="form-control" type="text" placeholder="Title"/>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
+                            <label for="movieDirector">Director: {movie.Director}</label>
+                            <input class="form-control" type="text" placeholder="Director"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="movieYear">Year Released: {movie.Year}</label>
+                            <input class="form-control" type="text" placeholder="Year"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="movieRating">Rating: {movie.My_Rating}</label>
+                            <input class="form-control" type="number" min="0" max="5" placeholder="Rating 0-5"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="movieRating">Movie Poster URL</label>
+                            <input class="form-control" type="text" placeholder="URL"/>
                         </div>
                         <button onClick={props.saveEdit} className="btn btn-success">Save Changes</button>
                         <button id={movie.id} onClick={props.deleteMovie} className="btn btn-danger">Delete</button>

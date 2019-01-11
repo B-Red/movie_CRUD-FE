@@ -49,6 +49,14 @@ class App extends Component {
       this.setState ({ selectedMovie : [] })
     })
   }
+  editMovie = (event) => {
+    fetch(`https://reds-movie-backend.herokuapp.com/${event.target.id}`, { method : 'PUT' })
+    .then(response => {
+      this.currentState()
+      this.saveEdit()
+      this.setState ({ selectedMovie : [] })
+    })
+  }
   clearSelectedMovie = () => {
     this.setState({ selectedMovie : [] })
   }
