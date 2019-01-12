@@ -18,6 +18,8 @@ const Navbar = (props) => {
                     </li>
                 </ul>
             </div>
+            <button type="button" className="button" onClick={props.addMovie}> Add Movie </button> 
+            
         </nav>
     )
 }

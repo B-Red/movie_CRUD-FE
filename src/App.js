@@ -16,7 +16,9 @@ class App extends Component {
       this.state = {
         movies: [],
         selectedMovie:[],
-        editMovie:false
+        editMovie:false,
+        newMovie:[],
+        addMovie:false
       };
     }
   currentState = () => {
@@ -41,6 +43,13 @@ class App extends Component {
   saveEdit = () => {
     this.setState({editMovie : false })
   }
+  addMovie = () => {
+    this.setState({addMovie : true })
+  }
+  cancelAdd = () => {
+    this.setState({addMovie : false })
+  }
+
   deleteMovie = (event) => {
     fetch(`https://reds-movie-backend.herokuapp.com/${event.target.id}`, { method : 'DELETE' })
     .then(response => {
@@ -65,7 +74,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <Navbar />
+          <Navbar addMovie={this.addMovie} />
           <div className="container-fluid">
             <Route path='/' exact component={ HomePage } />
             <div className="container row">
@@ -75,10 +84,19 @@ class App extends Component {
               <div className="col-8">
                 <Route path='/' render = {props => <ShowMovie {...props} selectedMovie = {this.state.selectedMovie} 
                 showEdit={this.showEdit} />} />
+                
+                
+                {this.state.addMovie ?
+                <AddMovie  
+                cancelAdd={this.cancelAdd} /> : ""}
+                
+                
+                
                 <EditMovie 
                 editMovie={this.state.editMovie ? "modal display-block" : "modal display-none"} 
                 showEdit={this.showEdit} saveEdit={this.saveEdit} 
-                selectedMovie={this.state.selectedMovie} deleteMovie={this.deleteMovie}/>  
+                selectedMovie={this.state.selectedMovie} deleteMovie={this.deleteMovie}/>
+
               </div>
             </div>
           </div>
