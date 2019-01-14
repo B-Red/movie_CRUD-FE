@@ -18,7 +18,7 @@ class App extends Component {
         selectedMovie:[],
         editMovie:false,
         newMovie:[],
-        addMovie:false
+        addMovie:false,
       };
     }
   currentState = () => {
@@ -49,6 +49,13 @@ class App extends Component {
   cancelAdd = () => {
     this.setState({addMovie : false })
   }
+  changeHandler = (event) => {
+    let {value, name} = event.target
+    this.setState({  
+      [name] : value
+      }
+    )
+  }
 
   deleteMovie = (event) => {
     fetch(`https://reds-movie-backend.herokuapp.com/${event.target.id}`, { method : 'DELETE' })
@@ -59,13 +66,28 @@ class App extends Component {
     })
   }
   editMovie = (event) => {
-    fetch(`https://reds-movie-backend.herokuapp.com/${event.target.id}`, { method : 'PUT' })
+    let updatedMovie = {
+      id : this.state.selectedMovie.id,
+      Director : this.state.Director,
+      Title : this.state.Title,
+      Poster_URL: this.state.Poster_URL,
+      Year : this.state.Year,
+      My_Rating : this.state.My_Rating
+    }
+    fetch(`https://reds-movie-backend.herokuapp.com/${event.target.id}`, 
+      { 
+        method : 'PUT',
+        headers : {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedMovie)
+      })
     .then(response => {
-      this.currentState()
-      this.saveEdit()
-      this.setState ({ selectedMovie : [] })
+      response.json()
     })
+    .then(() => this.currentState())
   }
+
   clearSelectedMovie = () => {
     this.setState({ selectedMovie : [] })
   }
@@ -95,7 +117,7 @@ class App extends Component {
                 <EditMovie 
                 editMovie={this.state.editMovie ? "modal display-block" : "modal display-none"} 
                 showEdit={this.showEdit} saveEdit={this.saveEdit} 
-                selectedMovie={this.state.selectedMovie} deleteMovie={this.deleteMovie}/>
+                selectedMovie={this.state.selectedMovie} deleteMovie={this.deleteMovie} changeHandler={this.changeHandler}/>
 
               </div>
             </div>
