@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter, Route } from "react-router-dom"
+import { BrowserRouter, Route } from 'react-router-dom'
 import Navbar from './Components/Navbar'
 import HomePage from './Components/HomePage'
 import IndexPage from './Components/IndexPage'
@@ -20,9 +20,9 @@ class App extends Component {
         newMovie:[],
         addMovie:false,
         id:0,
-        Director:"",
-        Title:"",
-        Poster_URL:"",
+        Director:'',
+        Title:'',
+        Poster_URL:'',
         My_Rating: 0,
         Year:0
       };
@@ -62,6 +62,7 @@ class App extends Component {
   cancelAdd = () => {
     this.setState({addMovie : false })
   }
+
   changeHandler = (event) => {
     let {value, name} = event.target
     this.setState({  
@@ -72,11 +73,12 @@ class App extends Component {
 
   deleteMovie = (event) => {
     fetch(`https://reds-movie-backend.herokuapp.com/${event.target.id}`, { method : 'DELETE' })
-    .then(response => {
-      this.currentState()
-      this.saveEdit()
-      this.setState ({ selectedMovie : [] })
-    })
+      .then(response => {
+        this.currentState()
+        this.saveEdit()
+        this.setState ({ selectedMovie : [] })
+      }
+    )
   }
   updateMovie = (event) => {
     event.preventDefault()
@@ -88,17 +90,16 @@ class App extends Component {
       Year : this.state.Year,
       My_Rating : this.state.My_Rating
     }
-    
     fetch(`https://reds-movie-backend.herokuapp.com/${event.target.id}`, { 
-        method:'PUT',
-        body: JSON.stringify(updatedMovie),
-        headers : {
-          'Content-Type': 'application/json'
+      method:'PUT',
+      body: JSON.stringify(updatedMovie),
+      headers : {
+        'Content-Type': 'application/json'
         }
-        
-      })
-      .then(response => response.json())
-      .then(() => this.currentState())
+      }
+    )
+    .then(response => response.json())
+    .then(() => this.currentState())
   }
 
   clearSelectedMovie = () => {
@@ -108,26 +109,26 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div className="App">
+        <div className='App'>
           <Navbar addMovie={this.addMovie} />
-          <div className="container-fluid">
+          <div className='container-fluid'>
             <Route path='/' exact component={ HomePage } />
-            <div className="container row">
-              <div className="col-4">
+            <div className='container row'>
+              <div className='col-4'>
                 <Route path='/movies' render = {props => <IndexPage {...props} movies = {this.state.movies} selectMovie ={this.selectMovie} />} />
               </div>
-              <div className="col-8">
+              <div className='col-8'>
                 <Route path='/' render = {props => <ShowMovie {...props} selectedMovie = {this.state.selectedMovie} 
                 showEdit={this.showEdit} />} />
                 
                 
                 {this.state.addMovie ?
-                <AddMovie cancelAdd={this.cancelAdd} /> : ""}
+                <AddMovie cancelAdd={this.cancelAdd} /> : ''}
                 
                 
                 
                 <EditMovie 
-                editMovie={this.state.editMovie ? "modal display-block" : "modal display-none"} 
+                editMovie={this.state.editMovie ? 'modal display-block' : 'modal display-none'} 
                 showEdit={this.showEdit} saveEdit={this.saveEdit} 
                 selectedMovie={this.state.selectedMovie} deleteMovie={this.deleteMovie} changeHandler={this.changeHandler} 
                 updateMovie={this.updateMovie}/>
