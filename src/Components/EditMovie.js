@@ -7,7 +7,7 @@ const EditMovie = (props) => {
                 return(
                 <div className="modal-main container">
                     <p className="display-4 font-weight-bolder">{movie.Title}</p>
-                    <form>
+                    <form onSubmit={props.updateMovie}>
                         <div class="form-group">
                             <label for="movieTitle">Movie Title: </label>
                             <input class="form-control" onChange={props.changeHandler}type="text" name='Title'defaultValue={movie.Title} placeholder="Title"/>
@@ -18,7 +18,7 @@ const EditMovie = (props) => {
                         </div>
                         <div class="form-group">
                             <label for="movieYear">Year Released: {movie.Year}</label>
-                            <input class="form-control" type="text" onChange={props.changeHandler}name='Year' defaultValue={movie.Year}/>
+                            <input class="form-control" type="number" onChange={props.changeHandler}name='Year' defaultValue={movie.Year}/>
                         </div>
                         <div class="form-group">
                             <label for="movieRating">Rating: {movie.My_Rating}</label>
@@ -28,7 +28,7 @@ const EditMovie = (props) => {
                             <label for="Poster_URL">Movie Poster URL</label>
                             <input class="form-control" type="text" onChange={props.changeHandler}  name='Poster_URL' defaultValue={movie.Poster_URL}/>
                         </div>
-                        <button onClick={props.saveEdit} className="btn btn-success">Save Changes</button>
+                        <button type="submit" onClick={props.updateMovie} id={movie.id} className="btn btn-success">Save Changes</button>
                         <button id={movie.id} onClick={props.deleteMovie} className="btn btn-danger">Delete</button>
                     </form>
                 </div>

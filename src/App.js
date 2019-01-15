@@ -19,12 +19,25 @@ class App extends Component {
         editMovie:false,
         newMovie:[],
         addMovie:false,
+        id:0,
+        Director:"",
+        Title:"",
+        Poster_URL:"",
+        My_Rating: 0,
+        Year:0
       };
     }
   currentState = () => {
     fetch('https://reds-movie-backend.herokuapp.com/')
       .then(response => response.json())
-      .then(data => this.setState({ movies : data }));
+      .then(data => this.setState({ 
+        movies : data,
+        Director:this.state.selectedMovie.Director,
+        Title:this.state.selectedMovie.Title,
+        Poster_URL:this.state.selectedMovie.Poster_URL,
+        My_Rating:this.state.selectedMovie.My_Rating,
+        Year:this.state.selectedMovie.Year
+      }));
   }
 
   componentDidMount() {
@@ -65,27 +78,27 @@ class App extends Component {
       this.setState ({ selectedMovie : [] })
     })
   }
-  editMovie = (event) => {
-    let updatedMovie = {
-      id : this.state.selectedMovie.id,
+  updateMovie = (event) => {
+    event.preventDefault()
+    const updatedMovie = {
+      id : event.target.id,
       Director : this.state.Director,
       Title : this.state.Title,
       Poster_URL: this.state.Poster_URL,
       Year : this.state.Year,
       My_Rating : this.state.My_Rating
     }
-    fetch(`https://reds-movie-backend.herokuapp.com/${event.target.id}`, 
-      { 
-        method : 'PUT',
+    
+    fetch(`https://reds-movie-backend.herokuapp.com/${event.target.id}`, { 
+        method:'PUT',
+        body: JSON.stringify(updatedMovie),
         headers : {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(updatedMovie)
+          'Content-Type': 'application/json'
+        }
+        
       })
-    .then(response => {
-      response.json()
-    })
-    .then(() => this.currentState())
+      .then(response => response.json())
+      .then(() => this.currentState())
   }
 
   clearSelectedMovie = () => {
@@ -109,15 +122,15 @@ class App extends Component {
                 
                 
                 {this.state.addMovie ?
-                <AddMovie  
-                cancelAdd={this.cancelAdd} /> : ""}
+                <AddMovie cancelAdd={this.cancelAdd} /> : ""}
                 
                 
                 
                 <EditMovie 
                 editMovie={this.state.editMovie ? "modal display-block" : "modal display-none"} 
                 showEdit={this.showEdit} saveEdit={this.saveEdit} 
-                selectedMovie={this.state.selectedMovie} deleteMovie={this.deleteMovie} changeHandler={this.changeHandler}/>
+                selectedMovie={this.state.selectedMovie} deleteMovie={this.deleteMovie} changeHandler={this.changeHandler} 
+                updateMovie={this.updateMovie}/>
 
               </div>
             </div>
