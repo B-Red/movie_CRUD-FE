@@ -101,7 +101,7 @@ class App extends Component {
       }
     )
     .then(response => response.json())
-    .then(() => this.currentState())
+    .then(() => this.currentState(), this.saveEdit())
   }
   addNewMovie = (event) => {
     event.preventDefault()

@@ -22,7 +22,7 @@ const EditMovie = (props) => {
                         </div>
                         <div className='form-group'>
                             <label htmlFor='movieRating'>Rating: {movie.My_Rating}</label>
-                            <input className='form-control' type='number' min='0' max='5' onChange={props.changeHandler} name='My_Rating' defaultValue={movie.My_Rating}/>
+                            <input className='form-control' type='number' min={0} max={5} onChange={props.changeHandler} name='My_Rating' defaultValue={movie.My_Rating}/>
                         </div>
                         <div className='form-group'>
                             <label htmlFor='Poster_URL'>Movie Poster URL</label>
