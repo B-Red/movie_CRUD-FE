@@ -28,8 +28,8 @@ const EditMovie = (props) => {
                             <label htmlFor='Poster_URL'>Movie Poster URL</label>
                             <input className='form-control' type='text' onChange={props.changeHandler}  name='Poster_URL' defaultValue={movie.Poster_URL}/>
                         </div>
-                        <button type='submit' onClick={props.updateMovie} id={movie.id} className='btn btn-success'>Save Changes</button>
-                        <button id={movie.id} type='button' onClick={props.deleteMovie} className='btn btn-danger'>Delete</button>
+                        <button type='submit' onClick={props.updateMovie} id={movie.id} className='btn btn-success m-1'>Save Changes</button>
+                        <button id={movie.id} type='button' onClick={props.deleteMovie} className='btn btn-danger m-1'>Delete</button>
                     </form>
                 </div>
             )})}

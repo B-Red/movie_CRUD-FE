@@ -27,8 +27,8 @@ const AddMovie = (props) => {
                             <label for='Poster_URL'>Movie Poster URL</label>
                             <input className='form-control' name='Poster_URL' type='text' placeholder='URL'/>
                         </div>
-                        <button type='submit' className='btn btn-success'>Add Movie</button>
-                        <button onClick={props.cancelAdd} className='btn btn-danger'>Cancel</button>
+                        <button type='submit' className='btn btn-success m-1'>Add Movie</button>
+                        <button onClick={props.cancelAdd} className='btn btn-danger m-1'>Cancel</button>
                     </form>
                 </div>
             </div>

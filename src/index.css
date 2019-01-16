@@ -1,9 +1,6 @@
 .moviePoster{
-  width: 3em;
-  height: 4em;
-}
-.indMovie{
-  display: flex;
+  width: 4em;
+  height: 5em;
 }
 .card{
   width: 18em;
@@ -26,6 +23,7 @@
   top:50%;
   left:50%;
   transform: translate(-50%,-50%);
+  border-radius: 1rem;
 }
 
 .display-block {
@@ -34,4 +32,7 @@
 
 .display-none {
   display: none;
+}
+.moviesList {
+  overflow: scroll;
 }

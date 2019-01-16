@@ -3,7 +3,6 @@ import { BrowserRouter, Route } from 'react-router-dom'
 import Navbar from './Components/Navbar'
 import HomePage from './Components/HomePage'
 import IndexPage from './Components/IndexPage'
-import Footer from './Components/Footer'
 import AddMovie from './Components/AddMovie'
 import ShowMovie from './Components/ShowMovie'
 import EditMovie from './Components/EditMovie'
@@ -141,10 +140,10 @@ class App extends Component {
           <div className='container-fluid'>
             <Route path='/' exact component={ HomePage } />
             <div className='container row'>
-              <div className='col-4'>
+              <div className='col-5 float-left vh-100 overflow-auto'>
                 <Route path='/movies' render={props => <IndexPage {...props} alt={this.state.movies.Title} movies={this.state.movies} selectMovie ={this.selectMovie} />} />
               </div>
-              <div className='col-8'>
+              <div className='col-7'>
                 { this.state.selected ?
                 <ShowMovie selectedMovie={this.state.selectedMovie} showEdit={this.showEdit} /> : '' }
                 
@@ -159,7 +158,6 @@ class App extends Component {
               </div>
             </div>
           </div>
-          <Footer />
         </div>
       </BrowserRouter>
     );
