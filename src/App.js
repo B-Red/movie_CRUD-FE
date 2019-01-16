@@ -9,7 +9,6 @@ import ShowMovie from './Components/ShowMovie'
 import EditMovie from './Components/EditMovie'
 
 
-
 class App extends Component {
   constructor(){
     super()
@@ -55,12 +54,15 @@ class App extends Component {
   showEdit = () => {
     this.setState({editMovie : true })
   }
+
   saveEdit = () => {
     this.setState({editMovie : false })
   }
+
   addMovie = () => {
     this.setState({addMovie : true })
   }
+
   cancelAdd = () => {
     this.setState({addMovie : false })
   }
@@ -82,6 +84,7 @@ class App extends Component {
       }
     )
   }
+
   updateMovie = (event) => {
     event.preventDefault()
     const updatedMovie = {
@@ -103,6 +106,7 @@ class App extends Component {
     .then(response => response.json())
     .then(() => this.currentState(), this.saveEdit())
   }
+  
   addNewMovie = (event) => {
     event.preventDefault()
     const movieForm = new FormData(event.target) 
