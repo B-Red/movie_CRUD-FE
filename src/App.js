@@ -136,7 +136,7 @@ class App extends Component {
             <Route path='/' exact component={ HomePage } />
             <div className='container row'>
               <div className='col-4'>
-                <Route path='/movies' render = {props => <IndexPage {...props} movies = {this.state.movies} selectMovie ={this.selectMovie} />} />
+                <Route path='/movies' render = {props => <IndexPage {...props} alt={this.state.movies.Title} movies = {this.state.movies} selectMovie ={this.selectMovie} />} />
               </div>
               <div className='col-8'>
                 <Route path='/' render = {props => <ShowMovie {...props} selectedMovie = {this.state.selectedMovie} 

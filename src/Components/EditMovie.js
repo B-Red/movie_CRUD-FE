@@ -9,23 +9,23 @@ const EditMovie = (props) => {
                     <p className='display-4 font-weight-bolder'>{movie.Title}</p>
                     <form onSubmit={props.updateMovie}>
                         <div className='form-group'>
-                            <label for='movieTitle'>Movie Title: </label>
+                            <label htmlFor='movieTitle'>Movie Title: </label>
                             <input className='form-control' onChange={props.changeHandler}type='text' name='Title'defaultValue={movie.Title} placeholder='Title'/>
                         </div>
                         <div className='form-group'>
-                            <label for='movieDirector'>Director: {movie.Director}</label>
+                            <label htmlFor='movieDirector'>Director: {movie.Director}</label>
                             <input className='form-control' type='text' onChange={props.changeHandler} name='Director' defaultValue={movie.Director} placeholder='Director'/>
                         </div>
                         <div className='form-group'>
-                            <label for='movieYear'>Year Released: {movie.Year}</label>
+                            <label htmlFor='movieYear'>Year Released: {movie.Year}</label>
                             <input className='form-control' type='number' onChange={props.changeHandler}name='Year' defaultValue={movie.Year}/>
                         </div>
                         <div className='form-group'>
-                            <label for='movieRating'>Rating: {movie.My_Rating}</label>
+                            <label htmlFor='movieRating'>Rating: {movie.My_Rating}</label>
                             <input className='form-control' type='number' min='0' max='5' onChange={props.changeHandler} name='My_Rating' defaultValue={movie.My_Rating}/>
                         </div>
                         <div className='form-group'>
-                            <label for='Poster_URL'>Movie Poster URL</label>
+                            <label htmlFor='Poster_URL'>Movie Poster URL</label>
                             <input className='form-control' type='text' onChange={props.changeHandler}  name='Poster_URL' defaultValue={movie.Poster_URL}/>
                         </div>
                         <button type='submit' onClick={props.updateMovie} id={movie.id} className='btn btn-success'>Save Changes</button>
