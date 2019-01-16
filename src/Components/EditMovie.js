@@ -29,7 +29,7 @@ const EditMovie = (props) => {
                             <input className='form-control' type='text' onChange={props.changeHandler}  name='Poster_URL' defaultValue={movie.Poster_URL}/>
                         </div>
                         <button type='submit' onClick={props.updateMovie} id={movie.id} className='btn btn-success'>Save Changes</button>
-                        <button id={movie.id} onClick={props.deleteMovie} className='btn btn-danger'>Delete</button>
+                        <button id={movie.id} type='button' onClick={props.deleteMovie} className='btn btn-danger'>Delete</button>
                     </form>
                 </div>
             )})}

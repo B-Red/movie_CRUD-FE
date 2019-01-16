@@ -101,6 +101,27 @@ class App extends Component {
     .then(response => response.json())
     .then(() => this.currentState())
   }
+  addNewMovie = (event) => {
+    event.preventDefault()
+    const movieForm = new FormData(event.target) 
+    const newMovie = {
+      Title : movieForm.get('Title'),
+      Director : movieForm.get('Director'),
+      Year : movieForm.get('Year'),
+      My_Rating : movieForm.get('My_Rating'),
+      Poster_URL : movieForm.get('Poster_URL')
+    }
+    fetch('https://reds-movie-backend.herokuapp.com/', {
+      method : 'POST',
+      body: JSON.stringify(newMovie),
+      headers : {
+        'Content-Type': 'application/json'
+      }
+    }
+    )
+    .then(response => response.json())
+    .then(jsonresponse => this.setState({movies :[jsonresponse[0], ...this.state.movies]}))
+  }
 
   clearSelectedMovie = () => {
     this.setState({ selectedMovie : [] })
@@ -123,7 +144,7 @@ class App extends Component {
                 
                 
                 {this.state.addMovie ?
-                <AddMovie cancelAdd={this.cancelAdd} /> : ''}
+                <AddMovie addNewMovie={this.addNewMovie} cancelAdd={this.cancelAdd} /> : ''}
                 
                 
                 
