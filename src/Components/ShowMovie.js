@@ -1,7 +1,6 @@
 import React from 'react'
 
 const ShowMovie = (props) => {
-    // console.log(props)
     return (
         <div className='card'>
         {props.selectedMovie.map(selectedMovie => { 

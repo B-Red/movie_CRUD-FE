@@ -3,8 +3,7 @@ import React from 'react'
 const AddMovie = (props) => {
     return (
         <div className={props.newMovie}>
-            
-                <div className='modal display-block'>
+            <div className='modal display-block'>
                 <div className='modal-main container'>
                     <p className='display-4 font-weight-bolder'>New Movie</p>
                     <form onSubmit={props.addNewMovie}>
@@ -32,7 +31,7 @@ const AddMovie = (props) => {
                         <button onClick={props.cancelAdd} className='btn btn-danger'>Cancel</button>
                     </form>
                 </div>
-                </div>
+            </div>
         </div>
     );
 }
