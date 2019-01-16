@@ -15,16 +15,17 @@ class App extends Component {
     super()
       this.state = {
         movies: [],
-        selectedMovie:[],
-        editMovie:false,
-        newMovie:[],
-        addMovie:false,
-        id:0,
-        Director:'',
-        Title:'',
-        Poster_URL:'',
+        selectedMovie: [],
+        selected: false,
+        editMovie: false,
+        newMovie: [],
+        addMovie: false,
+        id: 0,
+        Director: '',
+        Title: '',
+        Poster_URL: '',
         My_Rating: 0,
-        Year:0
+        Year: 0
       };
     }
   currentState = () => {
@@ -48,6 +49,7 @@ class App extends Component {
     fetch(`https://reds-movie-backend.herokuapp.com/${event.target.id}`)
       .then(response => response.json())
       .then(data => this.setState({ selectedMovie : data }))
+      .then(this.setState({ selected : true }))
   }
 
   showEdit = () => {
@@ -124,7 +126,7 @@ class App extends Component {
   }
 
   clearSelectedMovie = () => {
-    this.setState({ selectedMovie : [] })
+    this.setState({ selectedMovie : [], selected : false })
   }
 
   render() {
@@ -136,24 +138,20 @@ class App extends Component {
             <Route path='/' exact component={ HomePage } />
             <div className='container row'>
               <div className='col-4'>
-                <Route path='/movies' render = {props => <IndexPage {...props} alt={this.state.movies.Title} movies = {this.state.movies} selectMovie ={this.selectMovie} />} />
+                <Route path='/movies' render={props => <IndexPage {...props} alt={this.state.movies.Title} movies={this.state.movies} selectMovie ={this.selectMovie} />} />
               </div>
               <div className='col-8'>
-                <Route path='/' render = {props => <ShowMovie {...props} selectedMovie = {this.state.selectedMovie} 
-                showEdit={this.showEdit} />} />
-                
+                { this.state.selected ?
+                <ShowMovie selectedMovie={this.state.selectedMovie} showEdit={this.showEdit} /> : '' }
                 
                 {this.state.addMovie ?
                 <AddMovie addNewMovie={this.addNewMovie} cancelAdd={this.cancelAdd} /> : ''}
-                
-                
                 
                 <EditMovie 
                 editMovie={this.state.editMovie ? 'modal display-block' : 'modal display-none'} 
                 showEdit={this.showEdit} saveEdit={this.saveEdit} 
                 selectedMovie={this.state.selectedMovie} deleteMovie={this.deleteMovie} changeHandler={this.changeHandler} 
                 updateMovie={this.updateMovie}/>
-
               </div>
             </div>
           </div>
