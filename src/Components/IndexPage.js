@@ -14,8 +14,10 @@ const IndexPage = (props) => {
                             </div>
                             <button className="p-2" onClick={props.selectMovie} id= {movie.id}>See More</button>
                         </div>
+                        )
+                    }
                 )
-            })}
+            }
         </div>
     )
 }
