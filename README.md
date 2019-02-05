@@ -1,5 +1,5 @@
 # Welcome!
-This application is built to demonstrate my abilites to create a full stack application.
+This application is built to demonstrate my abilities to create a full stack application.
 
 ## Technologies used:
 React.js, Bootstrap, Knex.js, express.js, heroku, and postgreSQL.
